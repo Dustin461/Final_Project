@@ -12,8 +12,9 @@ public class Article {
   private String description;
   private String source;
   private String author;
+  private String thumbnail;
 
-  public Article(Date date, String title, String linkToArticle, String category, String description, String source, String author) {
+  public Article(Date date, String title, String linkToArticle, String category, String description, String source, String author, String thumbnail) {
     setDate(date);
     setTitle(title);
     setLinkToArticle(linkToArticle);
@@ -21,6 +22,7 @@ public class Article {
     setDescription(description);
     setSource(source);
     setAuthor(author);
+    setThumbnail(thumbnail);
   }
 
   public Article(){
@@ -31,12 +33,39 @@ public class Article {
     setDescription("");
     setSource("");
     setAuthor("");
+    setThumbnail("");
   }
-
+  //Setter
   public void setDate(Date date) {
     this.date = date;
   }
+  public void setTitle(String title) {
+    this.title = title;
+  }
+  public void setLinkToArticle(String link) {
+    this.linkToArticle = link;
+  }
+  public void setCategory(String category) {
+    this.category = category;
+  }
+  public void setDescription(String description) {
+    this.description = description;
+  }
+  public void setSource(String source) {
+    this.source = source;
+  }
+  public void setAuthor(String author) {
+    this.author = author;
+  }
+  public void setThumbnail(String thumbnail) {
+    this.thumbnail = thumbnail;
+  }
 
+
+  //Getter
+  public Date getDate() {
+    return this.date;
+  }
   public String getTimeAgo() {
     long timeDiff = new Timestamp(System.currentTimeMillis()).getTime() - this.date.getTime();
     System.out.println(this.date.getTime());
@@ -49,8 +78,8 @@ public class Article {
 
     long diffDays = TimeUnit.MILLISECONDS.toDays(timeDiff)% 365;
 
-    long diffYears = TimeUnit.MILLISECONDS.toDays(timeDiff)/ 365l;
-    
+    long diffYears = TimeUnit.MILLISECONDS.toDays(timeDiff)/ 365L;
+
     if (diffYears>0) {
       return String.valueOf(diffYears) + " year(s) ago";
     } else if (diffDays>0) {
@@ -63,60 +92,29 @@ public class Article {
       return String.valueOf(diffSeconds) + " second(s) ago";
     }
   }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-  public void setLinkToArticle(String link) {
-    this.linkToArticle = link;
-  }
-
-  public void setCategory(String category) {
-    this.category = category;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public void setSource(String source) {
-    this.source = source;
-  }
-
-  public void setAuthor(String author) {
-    this.author = author;
-  }
-
-  public Date getDate() {
-    return this.date;
-  }
-
   public String getTitle() {
     return this.title;
   }
-
   public String getLinkToArticle() {
     return this.linkToArticle;
   }
-
   public String getCategory() {
     return this.category;
   }
-
   public String getDescription() {
     return this.description;
   }
-
   public String getSource() {
     return this.source;
   }
-
   public String getAuthor() {
     return this.author;
   }
-
   public String toString() {
+
     return this.getTitle();
+  }
+  public String getThumbnail() {
+    return this.thumbnail;
   }
 }

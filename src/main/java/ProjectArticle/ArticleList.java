@@ -3,6 +3,8 @@ package ProjectArticle;
 import java.util.ArrayList;
 import java.util.Collections;
 
+
+
 public class ArticleList {
   private ArrayList<Article> articleList;
 
@@ -25,9 +27,9 @@ public class ArticleList {
   public ArrayList<Article> getNewsByCategory(String category) {
     ArrayList<Article> res = new ArrayList<Article>();
 
-    for (int i = 0; i<articleList.size(); i++) {
-      if (articleList.get(i).getCategory() == category) {
-        res.add(articleList.get(i));
+    for (Article article : articleList) {
+      if (article.getCategory().equals(category)) {
+        res.add(article);
       }
     }
 
@@ -37,9 +39,9 @@ public class ArticleList {
   public ArrayList<Article> getNewsBySearch(String search) {
     ArrayList<Article> res = new ArrayList<Article>();
 
-    for (int i = 0; i<articleList.size(); i++) {
-      if (articleList.get(i).getTitle().contains(search)) {
-        res.add(articleList.get(i));
+    for (Article article : articleList) {
+      if (article.getTitle().contains(search)) {
+        res.add(article);
       }
     }
 
