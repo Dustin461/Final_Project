@@ -5,8 +5,10 @@ import java.util.concurrent.TimeUnit;
 import java.sql.Timestamp;
 
 public class Article {
-  private Date date;
+  private String date;
   private String title;
+  private String timeDuration;
+  private String pageCategory;
   private String linkToArticle;
   private String category;
   private String description;
@@ -14,9 +16,11 @@ public class Article {
   private String author;
   private String thumbnail;
 
-  public Article(Date date, String title, String linkToArticle, String category, String description, String source, String author, String thumbnail) {
+  public Article(String date, String title, String timeDuration, String pageCategory, String linkToArticle, String category, String description, String source, String author, String thumbnail) {
     setDate(date);
     setTitle(title);
+    setTimeDuration(timeDuration);
+    setPageCategory(pageCategory);
     setLinkToArticle(linkToArticle);
     setCategory(category);
     setDescription(description);
@@ -26,8 +30,10 @@ public class Article {
   }
 
   public Article(){
-    setDate(new Timestamp(System.currentTimeMillis()));
+    setDate("");
     setTitle("");
+    setTimeDuration("");
+    setPageCategory("");
     setLinkToArticle("");
     setCategory("");
     setDescription("");
@@ -35,12 +41,19 @@ public class Article {
     setAuthor("");
     setThumbnail("");
   }
+
   //Setter
-  public void setDate(Date date) {
+  public void setDate(String date) {
     this.date = date;
   }
   public void setTitle(String title) {
     this.title = title;
+  }
+  public void setTimeDuration(String timeDuration) {
+    this.timeDuration = timeDuration;
+  }
+  public void setPageCategory(String pageCategory) {
+    this.pageCategory = pageCategory;
   }
   public void setLinkToArticle(String link) {
     this.linkToArticle = link;
@@ -61,60 +74,39 @@ public class Article {
     this.thumbnail = thumbnail;
   }
 
-
   //Getter
-  public Date getDate() {
-    return this.date;
+  public String getDate() {
+    return date;
   }
-  public String getTimeAgo() {
-    long timeDiff = new Timestamp(System.currentTimeMillis()).getTime() - this.date.getTime();
-    System.out.println(this.date.getTime());
-
-    long diffSeconds = TimeUnit.MILLISECONDS.toSeconds(timeDiff)% 60;
-
-    long diffMinutes = TimeUnit.MILLISECONDS.toMinutes(timeDiff)% 60;
-
-    long diffHours = TimeUnit.MILLISECONDS.toHours(timeDiff)% 24;
-
-    long diffDays = TimeUnit.MILLISECONDS.toDays(timeDiff)% 365;
-
-    long diffYears = TimeUnit.MILLISECONDS.toDays(timeDiff)/ 365L;
-
-    if (diffYears>0) {
-      return String.valueOf(diffYears) + " year(s) ago";
-    } else if (diffDays>0) {
-      return String.valueOf(diffDays) + " day(s) ago";
-    } else if (diffHours>0) {
-      return String.valueOf(diffHours) + " hour(s) ago";
-    } else if (diffMinutes>0) {
-      return String.valueOf(diffMinutes) + " minute(s) ago";
-    } else {
-      return String.valueOf(diffSeconds) + " second(s) ago";
-    }
+  public String getTimeDuration() {
+    return timeDuration;
   }
   public String getTitle() {
-    return this.title;
+    return title;
+  }
+  public String getPageCategory() {
+    return pageCategory;
   }
   public String getLinkToArticle() {
-    return this.linkToArticle;
+    return linkToArticle;
   }
   public String getCategory() {
-    return this.category;
+    return category;
   }
   public String getDescription() {
-    return this.description;
+    return description;
   }
   public String getSource() {
-    return this.source;
+    return source;
   }
   public String getAuthor() {
-    return this.author;
+    return author;
   }
   public String toString() {
 
-    return this.getTitle();
+    return getTitle();
   }
   public String getThumbnail() {
-    return this.thumbnail;
+    return thumbnail;
   }
 }

@@ -47,8 +47,9 @@ public class ArticleList {
 
     return res;
   }
-
+  /*
   public void sortListByDate() {
     Collections.sort(articleList, (a1, a2) -> (int) (a2.getDate().getTime() - a1.getDate().getTime()));
   }
+  */
 }
