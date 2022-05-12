@@ -1,26 +1,29 @@
+/** This file is used to test scrapping data
+ * Ignore this file please
+ */
 package ProjectArticle;
 
-import javafx.application.Application;
 import javafx.stage.Stage;
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.jsoup.select.Selector;
 
 import java.io.IOException;
+import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
-public class ZingArticle extends Application {
 
-    /** From here, we do the article management for ZingNews.vn **/
-
-    //This function will scrap the data from the website
-    public static ArrayList<Article> getListOfElementsInZing(String url, String category) throws IOException {
+public class Test {
+    public static ArrayList<Article> getZingArticleList(String url, String category) throws IOException {
         final int MAX_ARTICLES = 50;
         ArrayList<Article> zingArticleList = new ArrayList<>();
 
         //Set up Jsoup to scrap data from website
         Document doc = Jsoup.connect(url).get();
+
         try {
             Elements articles;
             if (category.equals("Newest")) { articles = doc.select("section#news-latest div.article-list article.article-item.type-text, section#news-latest div.article-list article.article-item.type-picture, section#news-latest div.article-list article.article-item.type-hasvideo"); }
@@ -35,9 +38,10 @@ public class ZingArticle extends Application {
             Elements dateOfArticle = articles.select("p.article-meta");
             //Find the original category of the article
             Elements pageCategoryOfArticle = articles.select("p.article-meta span.category-parent");
-
-
-            for (int i = 0; i <= MAX_ARTICLES; i++) {
+            //Elements articleEl = doc.select("article[article-id]");
+            Elements authorOfArticle = doc.select("div.the-article-credit p.author");
+            int size = Math.min(articles.size(), 50);
+            for (int i = 0; i < 50; i++) {
                 zingArticleList.add(new Article());
                 //Set title of the article
                 zingArticleList.get(i).setTitle(titleAndSource.get(i).text());
@@ -62,55 +66,42 @@ public class ZingArticle extends Application {
                     //Set description of the article
                     zingArticleList.get(i).setDescription(descriptionOfArticle.get(i).text());
                 }
+
             }
         } catch (Selector.SelectorParseException e) {
             return null;
         } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
+            zingArticleList.remove(zingArticleList.size() - 1);
         }
         return zingArticleList;
     }
+    public static String deAccent(String str) {
+        String nfdNormalizedString = Normalizer.normalize(str, Normalizer.Form.NFD);
+        Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+        return pattern.matcher(nfdNormalizedString).replaceAll("");
+    }
 
-    //This function will get the list of article matching with the searched keyword
-    public static ArrayList<Article> getListOfSearchArticle(String keyword, String category) throws IOException {
-        ArrayList<Article> listOfSearchArticle = new ArrayList<>();
-        //Convert the keyword to an url with format: https://zingnews.vn/key-word-tim-kiem.html?content_type=0
-        String convertedLink = "https://zingnews.vn/" + keyword.trim().replaceAll("\\s", "-").toLowerCase() + "-tim-kiem.html?content_type=0";
-
-        Document doc = Jsoup.connect(convertedLink).get();
-        try {
-            Elements articles = doc.select("div.article-list div.article-item");
-            for (int i = 0; i <= articles.size(); i++) {
-                listOfSearchArticle.add(new Article());
-                //Set title of the article
-                listOfSearchArticle.get(i).setTitle(articles.select("p.article-title").text());
-                //Set source of the article
-                listOfSearchArticle.get(i).setSource("ZINGNEWS.VN");
-                //Set category of the article
-                listOfSearchArticle.get(i).setCategory(category);
-                //Set date and time of the article
-                String date = Helper.timeToUnixString3(articles.get(i).select("p.article-meta span.date").text() + " " +
-                        articles.get(i).select("p.article-meta span.time").text());
-                listOfSearchArticle.get(i).setDate(date);
-                //Set time duration of the article
-                listOfSearchArticle.get(i).setTimeDuration(Helper.timeDiff(date));
-                //Set thumbnail image of the article
-                listOfSearchArticle.get(i).setThumbnail(articles.get(i).select("p.article-thumbnail img").attr("abs:data-src"));
-                //Set description of the article
-                listOfSearchArticle.get(i).setDescription(articles.get(i).select("p.article-summary").text());
-            }
-
-        } catch (Selector.SelectorParseException e) {
-            return null;
-        } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
+    public static void printArticles(ArrayList<Article> list) {
+        int k = 1;
+        for (Article i : list) {
+            System.out.println(k + ":");
+            System.out.println("Source: " + deAccent(i.getSource()));
+            System.out.println("Title: " + deAccent(i.getTitle()));
+            System.out.println("Thumbnail: " + deAccent(i.getThumbnail()));
+            System.out.println("Category: " + deAccent(i.getPageCategory()));
+            System.out.println("Age: " + i.getTimeDuration());
+            System.out.println("Author: " + i.getAuthor());
+            System.out.println();
+            k++;
         }
 
-        return listOfSearchArticle;
     }
 
-    @Override
-    public void start(Stage primaryStage) {
+    public static void main(String[] args) throws IOException {
+        ArrayList<Article> newList = getZingArticleList("https://zingnews.vn/the-gioi.html", "Newest");
+        assert newList != null;
+        printArticles(newList);
 
     }
+
 }
