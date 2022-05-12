@@ -16,51 +16,59 @@ public class ZingArticle extends Application {
 
     //This function will scrap the data from the website
     public static ArrayList<Article> getListOfElementsInZing(String url, String category) throws IOException {
-        ArrayList<Article> listElementsOfZing = new ArrayList<>();
+        final int MAX_ARTICLES = 50;
+        ArrayList<Article> zingArticleList = new ArrayList<>();
 
         //Set up Jsoup to scrap data from website
         Document doc = Jsoup.connect(url).get();
         try {
-            Elements categoryFeatured = doc.select("section#category-featured div.article-list");
+            Elements articles;
+            if (category.equals("Newest")) { articles = doc.select("section#section-featured, section#section-latest div.article-list.listing-layout.responsive.unique"); }
+            else { articles = doc.select("section#news-latest div.article-list.listing-layout.responsive.infinite-load"); }
             //Find the thumbnail image of the article
-            Elements thumbnailOfArticle = categoryFeatured.select("p.article-thumbnail img");
-            //Find the title of the article
-            Elements titleOfArticle = categoryFeatured.select("p.article-title");
+            Elements thumbnail = articles.select("p.article-thumbnail img");
+            //Find the title and the source of the article
+            Elements titleAndSource = articles.select("p.article-title a");
             //Find the description of the article
-            Elements descriptionOfArticle = categoryFeatured.select("p.article-summary");
+            Elements descriptionOfArticle = articles.select("p.article-summary");
             //Find the date and time of the article
-            Elements dateOfArticle = categoryFeatured.select("p.article-meta");
+            Elements dateOfArticle = articles.select("p.article-meta");
             //Find the original category of the article
-            Elements pageCategoryOfArticle = categoryFeatured.select("p.article-meta");
+            Elements pageCategoryOfArticle = articles.select("p.article-meta span.category-parent");
 
 
-            for (int i = 0; i <= 50; i++) {
-                listElementsOfZing.add(new Article());
+            for (int i = 0; i <= MAX_ARTICLES; i++) {
+                zingArticleList.add(new Article());
                 //Set title of the article
-                listElementsOfZing.get(i).setTitle(titleOfArticle.get(i).select("p.article-title").text());
+                zingArticleList.get(i).setTitle(titleAndSource.get(i).text());
                 //Set source of the article
-                listElementsOfZing.get(i).setSource("ZINGNEWS.VN");
+                zingArticleList.get(i).setSource("ZINGNEWS.VN");
                 //Set category of the article
-                listElementsOfZing.get(i).setCategory(category);
+                zingArticleList.get(i).setCategory(category);
                 //Set original category of the article
-                listElementsOfZing.get(i).setPageCategory(pageCategoryOfArticle.select("span.category").text());
-                //Set date and time of the article
-                listElementsOfZing.get(i).setDate(dateOfArticle.get(i).select("span.date").text() + " " + dateOfArticle.get(i).select("span.time").text());
+                zingArticleList.get(i).setPageCategory(pageCategoryOfArticle.get(i).text());
+                //Set date of the article
+                String date = Helper.timeToUnixString3(dateOfArticle.get(i).select("span.date").text() + " " +
+                        dateOfArticle.get(i).select("span.time").text());
+                zingArticleList.get(i).setDate(date);
                 //Set time duration of the article
-                listElementsOfZing.get(i).setTimeDuration(dateOfArticle.get(i).select("span.friendly-time").text());
+                zingArticleList.get(i).setTimeDuration(Helper.timeDiff(date));
                 //Set thumbnail image of the article
-                listElementsOfZing.get(i).setThumbnail(thumbnailOfArticle.get(i).attr("src"));
-                //Set description of the article
-                listElementsOfZing.get(i).setDescription(descriptionOfArticle.get(i).text());
+                if (thumbnail.get(i).hasAttr("data-src"))
+                    zingArticleList.get(i).setThumbnail(thumbnail.get(i).attr("abs:data-src"));
+                else {
+                    if (thumbnail.get(i).hasAttr("src"))
+                        zingArticleList.get(i).setThumbnail(thumbnail.get(i).attr("abs:src"));
+                    //Set description of the article
+                    zingArticleList.get(i).setDescription(descriptionOfArticle.get(i).text());
+                }
             }
-
-        } catch (Selector.SelectorParseException spe) {
-            spe.printStackTrace();
-            return listElementsOfZing;
+        } catch (Selector.SelectorParseException e) {
+            return null;
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
         }
-
-
-        return listElementsOfZing;
+        return zingArticleList;
     }
 
     //This function will get the list of article matching with the searched keyword
@@ -71,29 +79,31 @@ public class ZingArticle extends Application {
 
         Document doc = Jsoup.connect(convertedLink).get();
         try {
-            Elements categoryFeatured = doc.select("div.article-list div.article-item");
-            for (int i = 0; i <= categoryFeatured.size(); i++) {
+            Elements articles = doc.select("div.article-list div.article-item");
+            for (int i = 0; i <= articles.size(); i++) {
                 listOfSearchArticle.add(new Article());
                 //Set title of the article
-                listOfSearchArticle.get(i).setTitle(categoryFeatured.select("p.article-title").text());
+                listOfSearchArticle.get(i).setTitle(articles.select("p.article-title").text());
                 //Set source of the article
                 listOfSearchArticle.get(i).setSource("ZINGNEWS.VN");
                 //Set category of the article
                 listOfSearchArticle.get(i).setCategory(category);
                 //Set date and time of the article
-                listOfSearchArticle.get(i).setDate(categoryFeatured.get(i).select("span.date").text() + " " +
-                        categoryFeatured.get(i).select("span.time").text());
+                String date = Helper.timeToUnixString3(articles.get(i).select("p.article-meta span.date").text() + " " +
+                        articles.get(i).select("p.article-meta span.time").text());
+                listOfSearchArticle.get(i).setDate(date);
                 //Set time duration of the article
-                listOfSearchArticle.get(i).setTimeDuration(categoryFeatured.get(i).select("span.friendly-time").text());
+                listOfSearchArticle.get(i).setTimeDuration(Helper.timeDiff(date));
                 //Set thumbnail image of the article
-                listOfSearchArticle.get(i).setThumbnail(categoryFeatured.get(i).select("p.article-thumbnail img").attr("src"));
+                listOfSearchArticle.get(i).setThumbnail(articles.get(i).select("p.article-thumbnail img").attr("abs:data-src"));
                 //Set description of the article
-                listOfSearchArticle.get(i).setDescription(categoryFeatured.get(i).select("p.article-summary").text());
+                listOfSearchArticle.get(i).setDescription(articles.get(i).select("p.article-summary").text());
             }
 
-        } catch (Selector.SelectorParseException spe) {
-            spe.printStackTrace();
-            return listOfSearchArticle;
+        } catch (Selector.SelectorParseException e) {
+            return null;
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
         }
 
         return listOfSearchArticle;
