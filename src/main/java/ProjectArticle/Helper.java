@@ -93,6 +93,20 @@ public class Helper extends Application {
         }
         return String.valueOf(unixTime);
     }
+
+    public static String timeToUnixString3Reverse(String time){
+        long unixTime = 0;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd/MM/yyyy");
+            Date date = sdf.parse(time);
+            unixTime = date.getTime() / 1000;
+
+        } catch (ParseException e){
+            e.printStackTrace();
+        }
+        return String.valueOf(unixTime);
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
 
