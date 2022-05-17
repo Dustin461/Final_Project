@@ -7,4 +7,5 @@ module com.example.final_project {
 
     opens ProjectController to javafx.fxml;
     exports ProjectController;
+    exports ProjectArticle;
 }
