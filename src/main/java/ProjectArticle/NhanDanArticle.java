@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 public class NhanDanArticle {
 
-    private static HashMap<String, String> categoriesMap  = new HashMap<String, String>() {{
+    private static final HashMap<String, String> categoriesMap  = new HashMap<String, String>() {{
         put("Politics", "chinhtri");
         put("Business", "kinhte");
         put("Technology", "khoahoc-congnghe");
@@ -22,8 +22,8 @@ public class NhanDanArticle {
         put("World", "thegioi");
     }};
 
-    public static ArrayList<Article> getListOfElementsInNhanDan(String url, String category) throws IOException{
-        url += categoriesMap.get(category);
+    public static ArrayList<Article> getNhanDanArticleList(String url, String category) throws IOException{
+        //url += categoriesMap.get(category);
         ArrayList<Article> nhanDanArticleList = new ArrayList<>();
 
         Document doc = Jsoup.connect(url).get();
@@ -99,6 +99,24 @@ public class NhanDanArticle {
 
     public static void main(String[] args) throws IOException{
         System.out.println(getListOfSearchArticle("nhan", "Politics").toString());
+        ArrayList<Article> newList = getNhanDanArticleList("https://nhandan.vn/chinhtri", "Newest");
+        //assert newList != null;
+        printArticles(newList);
+    }
+
+    public static void printArticles(ArrayList<Article> list) {
+        int k = 1;
+        for (Article i : list) {
+            System.out.println(k + ":");
+            System.out.println("Source: " + i.getSource());
+            System.out.println("Title: " + i.getTitle());
+            System.out.println("Thumbnail: " + i.getThumbnail());
+            System.out.println("Category: " + i.getPageCategory());
+            System.out.println("Age: " + i.getTimeDuration());
+            System.out.println("Author: " + i.getAuthor());
+            System.out.println();
+            k++;
+        }
     }
 
 }
