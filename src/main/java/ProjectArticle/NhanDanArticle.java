@@ -59,7 +59,7 @@ public class NhanDanArticle {
         return nhanDanArticleList;
     }
 
-    public static ArrayList<Article> getListOfSearchArticle(String keyword, String category) throws IOException{
+    public static ArrayList<Article> getListOfSearchNDArticle(String keyword, String category) throws IOException{
         String url = "https://nhandan.vn/Search/" + keyword;
         ArrayList<Article> nhanDanSearchArticleList = new ArrayList<>();
 
@@ -98,7 +98,7 @@ public class NhanDanArticle {
     }
 
     public static void main(String[] args) throws IOException{
-        System.out.println(getListOfSearchArticle("nhan", "Politics").toString());
+        System.out.println(getListOfSearchNDArticle("nhan", "Politics").toString());
         ArrayList<Article> newList = getNhanDanArticleList("https://nhandan.vn/chinhtri", "Newest");
         //assert newList != null;
         printArticles(newList);

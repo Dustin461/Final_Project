@@ -94,6 +94,20 @@ public class Helper extends Application {
         return String.valueOf(unixTime);
     }
 
+    // This function will convert from readable date (E, dd MMM yyyy HH:mm:ss Z) to unix time String (Sun, 15 Aug 2021 19:00:00 +0700)
+    public static String timeToUnixString2(String time){
+        long unixTime = 0;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss Z");
+            Date date = sdf.parse(time);
+            unixTime = date.getTime() / 1000;
+
+        } catch (ParseException e){
+            e.printStackTrace();
+        }
+        return String.valueOf(unixTime);
+    }
+
     public static String timeToUnixString3Reverse(String time){
         long unixTime = 0;
         try {

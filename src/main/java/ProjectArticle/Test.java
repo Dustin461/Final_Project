@@ -93,6 +93,97 @@ public class Test {
         return pattern.matcher(nfdNormalizedString).replaceAll("");
     }
 
+
+    public static ArrayList<Article> getVnExpressArticleNewest(String url, String category) throws IOException {
+        ArrayList<Article> VnExpressNewestList = new ArrayList<>();
+        final int MAX_ARTICLE = 50;
+        Document doc = Jsoup.connect(url).get();
+        Elements articles = doc.select("item");
+
+        // Eliminate the articles do not have thumbnail
+        ArrayList<Element> removeArticle = new ArrayList<>();
+        for (Element index : articles) {
+            if (!index.select("description").text().contains("img")) {
+                removeArticle.add(index);
+                continue;
+            }
+            //Extract thumbnail from the description
+            String description = index.select("description").text();
+            int startOfLink = description.indexOf("\"");
+            int endOfLink = description.indexOf("\"", startOfLink + 1);
+            int startOfThumbnail = description.indexOf("\"", endOfLink + 1);
+            int endOfThumbnail = description.indexOf("\"", startOfThumbnail + 1);
+            // Set thumb for object
+            if (endOfThumbnail <= 2) {
+                removeArticle.add(index);
+            }
+        }
+        articles.removeAll(removeArticle);
+        removeArticle.clear();
+
+        try{
+            for (int i = 0; i < MAX_ARTICLE; i++) {
+                VnExpressNewestList.add(new Article());
+
+                //Extract thumbnail from the description
+                String description = articles.get(i).select("description").text();
+                int startOfLink = description.indexOf("\"");
+                int endOfLink = description.indexOf("\"", startOfLink + 1);
+                int startOfThumbnail = description.indexOf("\"", endOfLink + 1);
+                int endOfThumbnail = description.indexOf("\"", startOfThumbnail + 1);
+                //Set thumbnail for each article
+                VnExpressNewestList.get(i).setThumbnail(description.substring(startOfThumbnail + 1, endOfThumbnail));
+                //Set title for each article
+                VnExpressNewestList.get(i).setTitle(articles.get(i).select("title").text());
+                //Set date for each article
+                VnExpressNewestList.get(i).setDate(Helper.timeToUnixString2(articles.get(i).select("pubDate").text()));
+                //Set source for each article
+                VnExpressNewestList.get(i).setSource("VnExpress");
+                //Set category for each article
+                VnExpressNewestList.get(i).setCategory(category);
+                //Set time duration for each article
+                VnExpressNewestList.get(i).setTimeDuration(Helper.timeDiff(VnExpressNewestList.get(i).getDate()));
+            }
+        } catch (Selector.SelectorParseException e) {
+            return null;
+        } catch (IndexOutOfBoundsException e) {
+            VnExpressNewestList.remove(VnExpressNewestList.size() - 1);
+        }
+        return VnExpressNewestList;
+    }
+
+    public static ArrayList<Article> getVnExpressArticleList(String url, String category) throws IOException {
+        ArrayList<Article> VnExpressList = new ArrayList<>();
+        final int MAX_ARTICLE = 50;
+        Document doc = Jsoup.connect(url).get();
+        Elements articles = doc.select("article.item-news.item-news-common");
+        Elements titleOfArticle = doc.select("h2.title-news a[title]");
+        Elements thumbnailOfArticle = doc.select("div.thumb-art img[itemprop]");
+
+        try {
+            for (int i = 0; i < MAX_ARTICLE; i++) {
+                VnExpressList.add(new Article());
+                //Set source of each article
+                VnExpressList.get(i).setSource("VnExpress");
+                //Set category of each article
+                VnExpressList.get(i).setCategory(category);
+                //Set title of each article
+                VnExpressList.get(i).setTitle(titleOfArticle.get(i).attr("title"));
+                //Set thumbnail of each article
+                VnExpressList.get(i).setThumbnail(thumbnailOfArticle.get(i).getElementsByTag("img").attr("data-src"));
+
+            }
+
+        }catch (Selector.SelectorParseException e) {
+            return null;
+        }catch (IndexOutOfBoundsException e) {
+            VnExpressList.remove(VnExpressList.size() - 1);
+        }
+
+
+        return VnExpressList;
+    }
+
     public static void printArticles(ArrayList<Article> list) {
         int k = 1;
         for (Article i : list) {
@@ -111,158 +202,12 @@ public class Test {
     }
 
     public static void main(String[] args) throws IOException {
-        ArrayList<Article> newList = getZingArticleList("https://zingnews.vn/the-gioi.html", "Newest");
+        //ArrayList<Article> newList = getVnExpressArticleNewest("https://vnexpress.net/rss/tin-moi-nhat.rss", "Newest");
+        ArrayList<Article> newList = getVnExpressArticleList("https://vnexpress.net/thoi-su/chinh-tri", "Politics");
         assert newList != null;
         printArticles(newList);
 
     }
 
-    public static void displayZingArticle(Article article, VBox vbox) throws IOException {
-        //clear the vbox to display new article
-        vbox.getChildren().clear();
-        String url = article.getLinkToArticle();
-        Document doc = Jsoup.connect(url).get();
 
-        Elements articles = doc.select("article[article-id");
-        Elements date = articles.select("ul.the-article-meta li.the-article-publish");
-        Elements author = articles.select("div.the-article-credit p.author");
-        Elements pageCategory = articles.select("p.the-article-category a");
-        Elements video = articles.select("p.video-container.formatted.player-inited");
-        Elements body = articles.select("div.the-article-body > p, td.pic img[src], td.pCaption.caption, figure.video.cms-video.player-inited");
-
-        //Set date
-        article.setDate(date.text());
-        //Set author
-        article.setAuthor(author.text());
-        //Set original category
-        article.setPageCategory(pageCategory.text());
-
-        //Display image of ZingNews source
-        Image logo = new Image("image/zing_logo_big.png", 200, 200, true, true, true);
-        ImageView imageViewLogo = new ImageView();
-        imageViewLogo.setImage(logo);
-        imageViewLogo.setPreserveRatio(true);
-        imageViewLogo.setCache(true);
-        imageViewLogo.setSmooth(true);
-        imageViewLogo.setFitHeight(60);
-        vbox.getChildren().add(imageViewLogo);
-
-        //Display category
-        Text textCategory = new Text(article.getCategory());
-        textCategory.setStyle("-fx-font-size:46;-fx-text-alignment:left;-fx-fill: black");
-        TextFlow textFlow = new TextFlow(textCategory);
-        vbox.getChildren().add(textFlow);
-
-        //Display original category
-        Text textOriginalCategory = new Text(article.getPageCategory());
-        textOriginalCategory.setStyle("-fx-font-size:18;-fx-text-alignment:right;-fx-fill: black");
-        TextFlow textFlow1 = new TextFlow(textOriginalCategory);
-        textFlow1.setStyle("-fx-text-alignment: left");
-        vbox.getChildren().add(textFlow1);
-
-        //Display date
-        Text textDate = new Text(article.getDate());
-        textDate.setStyle("-fx-font-size:18;-fx-text-alignment:right;-fx-fill: black");
-        TextFlow textFlow2 = new TextFlow(textDate);
-        textFlow1.setStyle("-fx-text-alignment: left");
-        vbox.getChildren().add(textFlow2);
-
-        //Display title
-        Text textTitle = new Text(article.getTitle());
-        textTitle.setStyle("-fx-font-size:36;-fx-font-weight:bold; -fx-text-alignment:justify;-fx-fill: black;");
-        TextFlow textFlow3 = new TextFlow(textTitle);
-        textFlow1.setStyle("-fx-text-alignment: justify");
-        vbox.getChildren().add(textFlow3);
-
-        //Display description
-        Text textDescription = new Text(article.getDescription());
-        textDescription.setStyle("-fx-font-size: 18;-fx-font-weight: bold;-fx-text-alignment: justify;-fx-fill: black");
-        TextFlow textFlow4 = new TextFlow(textDescription);
-        textDescription.setStyle("-fx-text-alignment: justify");
-        HBox hBoxOfDescription = new HBox();
-        hBoxOfDescription.setStyle("-fx-padding: 15");
-        hBoxOfDescription.getChildren().add(textFlow4);
-        vbox.getChildren().add(hBoxOfDescription);
-
-        //Display the body
-        for (Element i : body) {
-            TextFlow textFlow5 = new TextFlow();
-            vbox.getChildren().add(textFlow5);
-
-            //Display image
-            if (!(i.attr("data-src").isEmpty() || i.attr("src").isEmpty())) {
-                ImageView imageView = new ImageView();
-                imageView.setCache(true);
-                imageView.setSmooth(true);
-                imageView.setPreserveRatio(true);
-                if (i.attr("data-src").isEmpty()) {
-                    imageView.setImage(new Image(i.attr("abs:src"), 800, 0, true, true, true));
-                } else {
-                    imageView.setImage(new Image(i.attr("abs:data-src"), 800, 0, true, true, true));
-                }
-                //Set fit width for imageview
-                if (Main.stage.getWidth() < 900) {
-                    imageView.setFitWidth(Main.stage.getWidth() - 140);
-                }
-                if (Main.stage.getWidth() >= 900) {
-                    imageView.setFitWidth(800);
-                }
-                vbox.getChildren().add(imageView);
-            }
-            //Display image caption
-            if (i.hasClass("pCaption") && i.hasText()) {
-                if (!i.ownText().isEmpty()) {
-                    Text textImageCaption = new Text(i.ownText());
-                    textImageCaption.setStyle("-fx-font-size: 14;-fx-text-alignment: justify;-fx-fill: grey");
-                    textFlow5.getChildren().add(textImageCaption);
-                    textFlow5.setStyle("-fx-text-alignment: center");
-                    continue;
-                }
-                Text textImageCaption1 = new Text(i.select("p").text());
-                textImageCaption1.setStyle("-fx-font-size: 14;-fx-text-alignment: justify;-fx-fill: grey");
-                textFlow5.getChildren().add(textImageCaption1);
-                textFlow5.setStyle("-fx-text-alignment: center");
-            }
-
-            // Display video
-            if (i.hasClass("video")) {
-                Media media = new Media(i.select("div").attr("video-container"));
-                MediaPlayer mediaPlayer = new MediaPlayer(media);
-                MediaView mediaView = new MediaView(mediaPlayer);
-                mediaView.setPreserveRatio(true);
-                mediaView.setCache(true);
-                mediaView.setSmooth(true);
-                //Set fit width for video view
-                if (Main.stage.getWidth() < 900) {
-                    mediaView.setFitWidth(Main.stage.getWidth() - 140);
-                }
-                if (Main.stage.getWidth() >= 900) {
-                    mediaView.setFitWidth(800);
-                }
-                vbox.getChildren().add(mediaView);
-            }
-            // Display video caption
-            Text textVideoCaption = new Text(i.text());
-            textVideoCaption.setStyle("-fx-font-size: 14;-fx-text-alignment: justify;-fx-fill: grey");
-            TextFlow textFlow6 = new TextFlow();
-            textFlow6.getChildren().add(textVideoCaption);
-            textFlow6.setStyle("-fx-text-alignment: center");
-            vbox.getChildren().add(textFlow6);
-
-            // Display text/paragraph
-            if(i.select("p").hasText()) {
-                Text textParagraph = new Text(i.text());
-                textParagraph.setStyle("-fx-font-size: 18;-fx-text-alignment: justify;-fx-fill: black");
-                textFlow5.getChildren().add(textParagraph);
-                textFlow5.setStyle("-fx-text-alignment: justify");
-            }
-        }
-
-        //Display author
-        TextFlow textFlow7 = new TextFlow();
-        Text textAuthor = new Text(article.getAuthor());
-        textAuthor.setStyle("-fx-font-size: 24;-fx-text-alignment: right;-fx-font-weight: bold");
-        textFlow7.setStyle("-fx-text-alignment: right");
-        vbox.getChildren().add(textFlow7);
-    }
 }

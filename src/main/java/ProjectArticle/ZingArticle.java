@@ -27,7 +27,6 @@ public class ZingArticle extends Application {
 
     //This function will scrap the data from the website
     public static ArrayList<Article> getZingArticleList(String url, String category) throws IOException {
-        final int MAX_ARTICLES = 50;
         ArrayList<Article> zingArticleList = new ArrayList<>();
 
         //Set up Jsoup to scrap data from website
@@ -47,8 +46,9 @@ public class ZingArticle extends Application {
             //Find the original category of the article
             Elements pageCategoryOfArticle = articles.select("p.article-meta span.category-parent");
 
+            int amountArticle = Math.min(articles.size(), 50);
 
-            for (int i = 0; i <= MAX_ARTICLES; i++) {
+            for (int i = 0; i < amountArticle; i++) {
                 zingArticleList.add(new Article());
                 //Set title of the article
                 zingArticleList.get(i).setTitle(titleAndSource.get(i).text());
@@ -77,13 +77,13 @@ public class ZingArticle extends Application {
         } catch (Selector.SelectorParseException e) {
             return null;
         } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
+            zingArticleList.remove(zingArticleList.size() - 1);
         }
         return zingArticleList;
     }
 
     //This function will get the list of article matching with the searched keyword
-    public static ArrayList<Article> getListOfSearchArticle(String keyword, String category) throws IOException {
+    public static ArrayList<Article> getListOfSearchZingArticle(String keyword, String category) throws IOException {
         ArrayList<Article> listOfSearchArticle = new ArrayList<>();
         //Convert the keyword to an url with format: https://zingnews.vn/key-word-tim-kiem.html?content_type=0
         String convertedLink = "https://zingnews.vn/" + keyword.trim().replaceAll("\\s", "-").toLowerCase() + "-tim-kiem.html?content_type=0";
@@ -114,7 +114,7 @@ public class ZingArticle extends Application {
         } catch (Selector.SelectorParseException e) {
             return null;
         } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
+            listOfSearchArticle.remove(listOfSearchArticle.size()-1);
         }
 
         return listOfSearchArticle;
