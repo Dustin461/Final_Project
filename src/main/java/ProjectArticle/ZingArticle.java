@@ -139,7 +139,7 @@ public class ZingArticle extends Application {
             //Set original category
             article.setPageCategory(pageCategory.text());
 
-            //Display image of ZingNews source
+            //Display logo
             Image logo = new Image("image/zing_logo_big.png", 200, 200, true, true, true);
             ImageView imageViewLogo = new ImageView();
             imageViewLogo.setImage(logo);
