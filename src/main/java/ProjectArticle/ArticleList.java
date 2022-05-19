@@ -99,9 +99,9 @@ public class ArticleList {
     es.execute(() -> {
       zingNewestList.clear();
       try {
-        zingNewestList = ZingArticle.getZingArticleList("https://zingnews.vn/", "News");
+        zingNewestList = ZingArticle.getZingArticleList("https://zingnews.vn/", "Newest");
         getCovidList();
-        getPoliticsList();
+        //getPoliticsList();
         getBusinessList();
         getTechnologyList();
         getHealthList();
@@ -128,7 +128,6 @@ public class ArticleList {
         getSportsList();
         getEntertainmentList();
         getWorldList();
-        //WelcomeSceneController.progressBar.setProgress(WelcomeSceneController.progressBar.getProgress() + 0.2);
         HomeSceneController.newestProgressBar.setProgress(HomeSceneController.newestProgressBar.getProgress() + 0.2);
       } catch (IOException e) {
         e.printStackTrace();
@@ -148,20 +147,25 @@ public class ArticleList {
         getSportsList();
         getEntertainmentList();
         getWorldList();
-        //WelcomeSceneController.progressBar.setProgress(WelcomeSceneController.progressBar.getProgress() + 0.2);
-        HomeSceneController.newestProgressBar.setProgress(HomeSceneController.newestProgressBar.getProgress() + 0.2);
+        HomeSceneController.newestProgressBar.setProgress(HomeSceneController.newestProgressBar.getProgress() + 0.25);
       } catch (IOException e) {
         e.printStackTrace();
       }
     });
 
-    // Thanh Nien Newest
+    //Thanh Nien Newest
     es.execute(() -> {
       thanhNienNewestList.clear();
       try {
         thanhNienNewestList = ThanhNienArticle.getListOfElementsInTN("https://thanhnien.vn", "Newest");
-        getCovidList(); getPoliticsList();
-        //WelcomeSceneController.progressBar.setProgress(WelcomeSceneController.progressBar.getProgress() + 0.2);
+        getCovidList();
+        getPoliticsList();
+        getBusinessList();
+        getTechnologyList();
+        getHealthList();
+        getSportsList();
+        getEntertainmentList();
+        getWorldList();
         HomeSceneController.newestProgressBar.setProgress(HomeSceneController.newestProgressBar.getProgress() + 0.2);
       } catch (IOException e) {
         e.printStackTrace();
@@ -289,6 +293,7 @@ public class ArticleList {
     ExecutorService es = Executors.newCachedThreadPool();
     // ZingNews Politics
     // Enter code here
+    /*
     es.execute(() -> {
       zingPoliticsList.clear();
       try {
@@ -299,6 +304,7 @@ public class ArticleList {
         e.printStackTrace();
       }
     });
+    */
 
     // VNExpress Politics
     // Enter code here
@@ -971,6 +977,10 @@ public class ArticleList {
     sortedArticles.sort((o1, o2) -> o2.getDate().compareTo(o1.getDate()));
 
     return sortedArticles;
+  }
+
+  public static void main(String[] args) throws IOException {
+    getNewestList();
   }
 
 

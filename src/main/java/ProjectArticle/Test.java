@@ -5,27 +5,22 @@ package ProjectArticle;
 
 
 
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Selector;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
-
-
 import java.io.IOException;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
-import Main.Main;
+import ProjectController.HomeSceneController;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 
 
 public class Test {
@@ -184,6 +179,8 @@ public class Test {
         return VnExpressList;
     }
 
+
+
     public static void printArticles(ArrayList<Article> list) {
         int k = 1;
         for (Article i : list) {
@@ -201,13 +198,167 @@ public class Test {
 
     }
 
+    public static ArrayList<Article> vnexpressNewestList = new ArrayList<>();
+    public static ArrayList<Article> vnexpressCovidList = new ArrayList<>();
+    public static ArrayList<Article> vnexpressPoliticsList = new ArrayList<>();
+    public static ArrayList<Article> vnexpressBusinessList = new ArrayList<>();
+    public static ArrayList<Article> vnexpressTechnologyList = new ArrayList<>();
+    public static ArrayList<Article> vnexpressHealthList = new ArrayList<>();
+    public static ArrayList<Article> vnexpressSportsList = new ArrayList<>();
+    public static ArrayList<Article> vnexpressEntertainmentList = new ArrayList<>();
+    public static ArrayList<Article> vnexpressWorldList = new ArrayList<>();
+    public static ArrayList<Article> vnexpressOthersList = new ArrayList<>();
+    public static ArrayList<Article> vnexpressSearchList = new ArrayList<>();
+
+    // From Zing News
+    public static ArrayList<Article> zingNewestList = new ArrayList<>();
+    public static ArrayList<Article> zingCovidList = new ArrayList<>();
+    public static ArrayList<Article> zingPoliticsList = new ArrayList<>();
+    public static ArrayList<Article> zingBusinessList = new ArrayList<>();
+    public static ArrayList<Article> zingTechnologyList = new ArrayList<>();
+    public static ArrayList<Article> zingHealthList = new ArrayList<>();
+    public static ArrayList<Article> zingSportsList = new ArrayList<>();
+    public static ArrayList<Article> zingEntertainmentList = new ArrayList<>();
+    public static ArrayList<Article> zingWorldList = new ArrayList<>();
+    public static ArrayList<Article> zingOthersList = new ArrayList<>();
+    public static ArrayList<Article> zingSearchList = new ArrayList<>();
+
+    // From Tuoi tre
+    public static ArrayList<Article> tuoiTreNewestList = new ArrayList<>();
+    public static ArrayList<Article> tuoiTreCovidList = new ArrayList<>();
+    public static ArrayList<Article> tuoiTrePoliticsList = new ArrayList<>();
+    public static ArrayList<Article> tuoiTreBusinessList = new ArrayList<>();
+    public static ArrayList<Article> tuoiTreTechnologyList = new ArrayList<>();
+    public static ArrayList<Article> tuoiTreHealthList = new ArrayList<>();
+    public static ArrayList<Article> tuoiTreSportsList = new ArrayList<>();
+    public static ArrayList<Article> tuoiTreEntertainmentList = new ArrayList<>();
+    public static ArrayList<Article> tuoiTreWorldList = new ArrayList<>();
+    public static ArrayList<Article> tuoiTreOthersList = new ArrayList<>();
+    public static ArrayList<Article> tuoiTreSearchList = new ArrayList<>();
+
+
+    // From Thanh Nien
+    public static ArrayList<Article> thanhNienNewestList = new ArrayList<>();
+    public static ArrayList<Article> thanhNienCovidList = new ArrayList<>();
+    public static ArrayList<Article> thanhNienPoliticsList = new ArrayList<>();
+    public static ArrayList<Article> thanhNienBusinessList = new ArrayList<>();
+    public static ArrayList<Article> thanhNienTechnologyList = new ArrayList<>();
+    public static ArrayList<Article> thanhNienHealthList = new ArrayList<>();
+    public static ArrayList<Article> thanhNienSportsList = new ArrayList<>();
+    public static ArrayList<Article> thanhNienEntertainmentList = new ArrayList<>();
+    public static ArrayList<Article> thanhNienWorldList = new ArrayList<>();
+    public static ArrayList<Article> thanhNienOthersList = new ArrayList<>();
+    public static ArrayList<Article> thanhNienSearchList = new ArrayList<>();
+
+    // From Nhan Dan
+    public static ArrayList<Article> nhanDanNewestList = new ArrayList<>();
+    public static ArrayList<Article> nhanDanCovidList = new ArrayList<>();
+    public static ArrayList<Article> nhanDanPoliticsList = new ArrayList<>();
+    public static ArrayList<Article> nhanDanBusinessList = new ArrayList<>();
+    public static ArrayList<Article> nhanDanTechnologyList = new ArrayList<>();
+    public static ArrayList<Article> nhanDanHealthList = new ArrayList<>();
+    public static ArrayList<Article> nhanDanSportsList = new ArrayList<>();
+    public static ArrayList<Article> nhanDanEntertainmentList = new ArrayList<>();
+    public static ArrayList<Article> nhanDanWorldList = new ArrayList<>();
+    public static ArrayList<Article> nhanDanOthersList = new ArrayList<>();
+    public static ArrayList<Article> nhanDanSearchList = new ArrayList<>();
+
+    // Categories
+    public static ArrayList<Article> newsList = new ArrayList<>();
+    public static ArrayList<Article> covidList = new ArrayList<>();
+    public static ArrayList<Article> politicsList = new ArrayList<>();
+    public static ArrayList<Article> businessList = new ArrayList<>();
+    public static ArrayList<Article> technologyList = new ArrayList<>();
+    public static ArrayList<Article> healthList = new ArrayList<>();
+    public static ArrayList<Article> sportsList = new ArrayList<>();
+    public static ArrayList<Article> entertainmentList = new ArrayList<>();
+    public static ArrayList<Article> worldList = new ArrayList<>();
+    public static ArrayList<Article> othersList = new ArrayList<>();
+    public static ArrayList<Article> searchList = new ArrayList<>();
+
+
     public static void main(String[] args) throws IOException {
+        /*
         //ArrayList<Article> newList = getVnExpressArticleNewest("https://vnexpress.net/rss/tin-moi-nhat.rss", "Newest");
         ArrayList<Article> newList = getVnExpressArticleList("https://vnexpress.net/thoi-su/chinh-tri", "Politics");
-        assert newList != null;
+
         printArticles(newList);
+         */
+
+        //HomeSceneController.progressBar.setProgress(0.0);
+
+
+        // ZingNews Politics
+        // Enter code here
+
+        vnexpressPoliticsList.clear();
+        vnexpressPoliticsList = VnExpressArticle.getVnExpressArticleList("https://vnexpress.net/thoi-su/chinh-tri","Politics");
+        //vnexpressPoliticsList.addAll(VnExpressArticle.getVnExpressArticleList("https://vnexpress.net/thoi-su/chinh-tri-p2", "Politics"));
+
+
+        // Tuoi Tre Politics
+
+        tuoiTrePoliticsList.clear();
+        tuoiTrePoliticsList = TuoiTreArticle.getListOfSearchTTArticle("chính trị", "Politics");
+
+
+
+        // Thanh Nien Politics
+
+        thanhNienPoliticsList.clear();
+        thanhNienPoliticsList = ThanhNienArticle.getListOfSearchTNArticle("chính trị", "Politics");
+
+
+        /*
+        // Nhan Dan Politics
+        es.execute(() -> {
+            nhanDanPoliticsList.clear();
+            try {
+                nhanDanPoliticsList = NhanDanArticle.getListOfElementsInNhanDan("https://nhandan.vn", "Politics");
+                //HomeSceneController.progressBar.setProgress(HomeSceneController.progressBar.getProgress() + 0.2);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        // Enter code here
+         */
+
+
+        politicsList.clear();
+        politicsList.addAll(getSortedArticlesList(vnexpressPoliticsList, zingPoliticsList, tuoiTrePoliticsList, thanhNienPoliticsList));
+
+        int k = 1;
+        for (Article i : politicsList) {
+            System.out.println(k + ":");
+            System.out.println("Source: " + deAccent(i.getSource()));
+            System.out.println("Title: " + deAccent(i.getTitle()));
+            System.out.println("Thumbnail: " + deAccent(i.getThumbnail()));
+            System.out.println("Category: " + deAccent(i.getCategory()));
+            System.out.println("Date: " + i.getDate());
+            System.out.println("Age: " + i.getTimeDuration());
+            System.out.println("Description: " + i.getDescription());
+            System.out.println();
+            k++;
+        }
+
 
     }
+
+    public static ArrayList<Article> getSortedArticlesList(ArrayList<Article> list1, ArrayList<Article> list2, ArrayList<Article> list3, ArrayList<Article> list4) {
+        ArrayList<Article> sortedArticles = new ArrayList<>();
+
+        sortedArticles.addAll(list1);
+        sortedArticles.addAll(list2);
+        sortedArticles.addAll(list3);
+        sortedArticles.addAll(list4);
+        //sortedArticles.addAll(list5);
+
+        sortedArticles.sort((o1, o2) -> o2.getDate().compareTo(o1.getDate()));
+
+        return sortedArticles;
+    }
+
+
 
 
 }

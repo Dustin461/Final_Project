@@ -18,6 +18,7 @@ import org.jsoup.select.Selector;
 import javafx.scene.text.*;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 public class VnExpressArticle extends Application {
@@ -87,10 +88,11 @@ public class VnExpressArticle extends Application {
         ArrayList<Article> VnExpressList = new ArrayList<>();
         final int MAX_ARTICLE = 50;
         Document doc = Jsoup.connect(url).get();
-        Elements articles = doc.select("article.item-news.item-news-common");
+        Elements articles = doc.select("article:not(.off-thumb).item-news-common");
         Elements titleOfArticle = doc.select("h2.title-news a[title]");
         Elements thumbnailOfArticle = doc.select("div.thumb-art img[itemprop]");
-
+        Elements linkOfArticle = doc.select("div.thumb-art a[href]");
+        Elements descriptionOfArticle = doc.select("p.description");
         try {
             for (int i = 0; i < MAX_ARTICLE; i++) {
                 VnExpressList.add(new Article());
@@ -100,10 +102,21 @@ public class VnExpressArticle extends Application {
                 VnExpressList.get(i).setCategory(category);
                 //Set title of each article
                 VnExpressList.get(i).setTitle(titleOfArticle.get(i).attr("title"));
-                //Set thumbnail of each article
-                VnExpressList.get(i).setThumbnail(thumbnailOfArticle.get(i).getElementsByTag("img").attr("data:src"));
-                //Set link to each article
-                VnExpressList.get(i).setLinkToArticle(articles.select("div.thumb-art a[href]").get(i).attr("abs:href"));
+                //Set link to article
+                VnExpressList.get(i).setLinkToArticle(linkOfArticle.get(i).attr("abs:href"));
+                //Set thumbnail for article
+                if(thumbnailOfArticle.get(i).getElementsByTag("img").attr("abs:data-src").isEmpty()) {
+                    VnExpressList.get(i).setThumbnail(thumbnailOfArticle.get(i).getElementsByTag("img").attr("abs:src"));
+                }else {
+                    VnExpressList.get(i).setThumbnail(thumbnailOfArticle.get(i).getElementsByTag("img").attr("abs:data-src"));
+
+                }
+                    //Set description for article
+                if(descriptionOfArticle.get(i).getElementsByTag("a").hasText()) {
+                    VnExpressList.get(i).setDescription(descriptionOfArticle.get(i).getElementsByTag("a").text());
+                }
+                //Set date and time duration of article
+
             }
 
         }catch (Selector.SelectorParseException e) {

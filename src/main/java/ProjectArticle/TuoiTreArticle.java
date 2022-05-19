@@ -45,10 +45,8 @@ public class TuoiTreArticle extends Application {
                     tuoitreArticleList.get(i).setTitle(titleAndLink.get(i).text());
                     // Add source
                     tuoitreArticleList.get(i).setSource("TUOITRE.VN");
-                    // Add original category
-                    tuoitreArticleList.get(i).setCategory(category);
                     // Add category
-                    tuoitreArticleList.get(i).setPageCategory(category);
+                    tuoitreArticleList.get(i).setCategory(category);
                     // Add date&time
                     String date = Helper.timeToUnixString3(getTTArticleDate("http://tuoitre.vn" + titleAndLink.get(i).attr("href")));
                     tuoitreArticleList.get(i).setDate(Helper.unixToTime(date).substring(0, 16));
@@ -138,7 +136,7 @@ public class TuoiTreArticle extends Application {
                 // Add source
                 listOfSearchArticle.get(i).setSource("TUOITRE.VN");
                 // Add category
-                listOfSearchArticle.get(i).setPageCategory(category);
+                listOfSearchArticle.get(i).setCategory(category);
                 // Add date&time
                 String date = Helper.timeToUnixString3(getTTArticleDate("http://tuoitre.vn" + titleAndLink.get(i).attr("href")));
                 listOfSearchArticle.get(i).setDate(Helper.unixToTime(date).substring(0, 16));
