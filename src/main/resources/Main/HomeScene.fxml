@@ -56,7 +56,7 @@
                             <children>
                                 <HBox layoutX="267.0" layoutY="-24.0" prefHeight="40.0" prefWidth="200.0" spacing="10.0" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
-                                        <TextField prefHeight="25.0" prefWidth="350.0" promptText="Search">
+                                        <TextField prefHeight="25.0" prefWidth="350.0" promptText="Search" stylesheets="@../css/style.css">
                                             <HBox.margin>
                                                 <Insets left="200.0" top="8.0" />
                                             </HBox.margin>

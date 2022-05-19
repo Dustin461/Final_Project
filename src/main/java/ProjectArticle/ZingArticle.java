@@ -14,9 +14,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-//import javafx.scene.media.Media;
-//import javafx.scene.media.MediaPlayer;
-//import javafx.scene.media.MediaView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -228,7 +228,7 @@ public class ZingArticle extends Application {
 
                 // Display video
                 if (i.hasClass("video")) {
-                    /*
+
                     Media media = new Media(i.select("div").attr("video-container"));
                     MediaPlayer mediaPlayer = new MediaPlayer(media);
                     MediaView mediaView = new MediaView(mediaPlayer);
@@ -243,7 +243,7 @@ public class ZingArticle extends Application {
                         mediaView.setFitWidth(800);
                     }
                     vbox.getChildren().add(mediaView);
-                     */
+
                 }
                 // Display video caption
                 Text textVideoCaption = new Text(i.text());
