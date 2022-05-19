@@ -27,26 +27,37 @@ import java.util.HashMap;
 public class NhanDanArticle extends Application {
 
     private static HashMap<String, String> categoriesMap  = new HashMap<String, String>() {{
+        put("Newest", "");
         put("Politics", "chinhtri");
         put("Business", "kinhte");
         put("Technology", "khoahoc-congnghe");
         put("Health", "y-te");
         put("Sports", "thethao");
         put("World", "thegioi");
+        put("Entertainment", "");
+        put("Others", "");
     }};
 
     public static void main(String[] args) throws IOException {
-        launch(args);
+        ArrayList<Article> testList = getListOfElementsInNhanDan("https://nhandan.vn/vanhoa", "Others");
+        testList.addAll(NhanDanArticle.getListOfElementsInNhanDan("https://nhandan.vn/xahoi", "Others"));
+        testList.addAll(NhanDanArticle.getListOfElementsInNhanDan("https://nhandan.vn/du-lich", "Others"));
+        testList.addAll(NhanDanArticle.getListOfElementsInNhanDan("https://nhandan.vn/giaoduc", "Others"));
+        testList.addAll(NhanDanArticle.getListOfElementsInNhanDan("https://nhandan.vn/moi-truong", "Others"));
+        System.out.println(testList);
+        for (Article article:testList) {
+            System.out.println(article.getDescription());
+        }
+        //launch(args);
     }
 
     public static ArrayList<Article> getListOfElementsInNhanDan(String url, String category) throws IOException{
-        url += "/" + categoriesMap.get(category);
         ArrayList<Article> nhanDanArticleList = new ArrayList<>();
 
-        Document doc = Jsoup.connect(url).get();
-        //System.out.println(doc);
-
         try {
+            url += "/" + categoriesMap.get(category);
+            Document doc = Jsoup.connect(url).get();
+            //System.out.println(doc);
             Elements articles;
             articles = doc.select("div.boxlist-other article");
             Elements thumbnail = articles.select("div.box-img img");
@@ -111,10 +122,12 @@ public class NhanDanArticle extends Application {
                 article.setLinkToArticle("https://nhandan.vn" + title.get(i).select("a").attr("href"));
                 article.setDescription(description.get(i).text());
 
+                article.setCategory(category);
 
                 nhanDanSearchArticleList.add(article);
             }
         } catch (Exception e) {
+            System.out.println(doc);
             e.printStackTrace();
         }
 
@@ -124,7 +137,8 @@ public class NhanDanArticle extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         // Testing
-        ArrayList<Article> testList = getListOfElementsInNhanDan("https://nhandan.vn", "Politics");
+        ArrayList<Article> testList = getListOfElementsInNhanDan("https://nhandan.vn", "Newest");
+        System.out.println(testList);
         Article testArticle = testList.get(4); //<--- Set article index here
         VBox articlePage = new VBox();
         displayNhanDanArticle(testArticle, articlePage);

@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="openjfx.javafx.media" type="repository">
+    <properties maven-id="org.openjfx:javafx-media:12-ea+5" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-media/12-ea+5/javafx-media-12-ea+5.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-media/12-ea+5/javafx-media-12-ea+5-linux.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/12-ea+5/javafx-graphics-12-ea+5.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/12-ea+5/javafx-graphics-12-ea+5-linux.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-base/12-ea+5/javafx-base-12-ea+5.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-base/12-ea+5/javafx-base-12-ea+5-linux.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
