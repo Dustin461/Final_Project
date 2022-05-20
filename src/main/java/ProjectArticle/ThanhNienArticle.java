@@ -134,7 +134,7 @@ public class ThanhNienArticle extends Application {
 
         try {
             Elements content = doc.select("div#abody.cms-body.detail"); // Content
-            Elements body = content.select("> p, table"); // p + image + video
+            Elements body = content.select("p, table"); // p + image + video
             Elements author = doc.select("#storybox > div.details__author > div > div > h4 > a"); // author
             Elements pageCategory = doc.select
                     ("#st-container > div > div.site-content.media-content > div.l-grid > div.breadcrumbs > a:nth-child(2)"); // page category
@@ -282,7 +282,7 @@ public class ThanhNienArticle extends Application {
                     vbox.getChildren().addAll(photoView, skipLine(1), photoCationHBox);
                 }
 
-                if (part.hasText() && !part.hasClass("picture") && !part.hasClass("video")) {
+                if (part.hasText() && !part.hasClass("picture") && !part.hasClass("video") && !part.parent().hasClass("caption") && !part.parent().hasClass("source")) {
                     // Normal text for paragraphs  (Color: WHITE, Font: Times New Roman, FontWeight: NORMAL, FontPosture: REGULAR, Size: 20)
                     Text paragraph = new Text("     " + part.text());
                     paragraph.setFill(Color.WHITE);
