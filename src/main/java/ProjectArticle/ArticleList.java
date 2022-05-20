@@ -222,7 +222,6 @@ public class ArticleList {
     ExecutorService es = Executors.newCachedThreadPool();
 
     // ZingNews Covid
-    // Enter code here
     es.execute(() -> {
       zingCovidList.clear();
       try {
@@ -235,7 +234,6 @@ public class ArticleList {
     });
 
     // VNExpress Covid
-    // Enter code here
     es.execute(() -> {
       vnexpressCovidList.clear();
       try {
@@ -307,7 +305,6 @@ public class ArticleList {
     */
 
     // VNExpress Politics
-    // Enter code here
     es.execute(() -> {
       vnexpressPoliticsList.clear();
       try {
@@ -351,7 +348,6 @@ public class ArticleList {
         e.printStackTrace();
       }
     });
-    // Enter code here
 
     es.shutdown();
 
@@ -365,7 +361,6 @@ public class ArticleList {
     ExecutorService es = Executors.newCachedThreadPool();
 
     // ZingNews Business
-    // Enter code here
     es.execute(() -> {
       zingBusinessList.clear();
       try {
@@ -379,7 +374,6 @@ public class ArticleList {
     });
 
     // VNExpress Business
-    // Enter code here
     es.execute(() -> {
       vnexpressBusinessList.clear();
       try {
@@ -396,7 +390,13 @@ public class ArticleList {
     es.execute(() -> {
       tuoiTreBusinessList.clear();
       try {
+        // Main category
         tuoiTreBusinessList = TuoiTreArticle.getListOfElementsInTT("https://tuoitre.vn/kinh-doanh.htm", "Business");
+        // Sub-categories
+        tuoiTreBusinessList.addAll(TuoiTreArticle.getListOfElementsInTT("https://tuoitre.vn/kinh-doanh/tai-chinh.htm", "Business"));
+        tuoiTreBusinessList.addAll(TuoiTreArticle.getListOfElementsInTT("https://tuoitre.vn/kinh-doanh/doanh-nghiep.htm", "Business"));
+        tuoiTreBusinessList.addAll(TuoiTreArticle.getListOfElementsInTT("https://tuoitre.vn/kinh-doanh/mua-sam.htm", "Business"));
+        tuoiTreBusinessList.addAll(TuoiTreArticle.getListOfElementsInTT("https://tuoitre.vn/kinh-doanh/dau-tu.htm", "Business"));
         HomeSceneController.progressBar.setProgress(HomeSceneController.progressBar.getProgress() + 0.2);
       } catch (IOException e) {
         e.printStackTrace();
@@ -469,7 +469,12 @@ public class ArticleList {
     es.execute(() -> {
       tuoiTreTechnologyList.clear();
       try {
+        // Main category
         tuoiTreTechnologyList = TuoiTreArticle.getListOfElementsInTT("https://congnghe.tuoitre.vn", "Technology");
+        // Sub-categories
+        tuoiTreTechnologyList.addAll(TuoiTreArticle.getListOfElementsInTT("https://congnghe.tuoitre.vn/thiet-bi.htm", "Technology"));
+        tuoiTreTechnologyList.addAll(TuoiTreArticle.getListOfElementsInTT("https://congnghe.tuoitre.vn/chuyen-doi-so.htm", "Technology"));
+        tuoiTreTechnologyList.addAll(TuoiTreArticle.getListOfElementsInTT("https://congnghe.tuoitre.vn/nhip-song-so.htm", "Technology"));
         HomeSceneController.progressBar.setProgress(HomeSceneController.progressBar.getProgress() + 0.2);
       } catch (IOException e) {
         e.printStackTrace();
@@ -482,6 +487,7 @@ public class ArticleList {
       try {
         thanhNienTechnologyList = ThanhNienArticle.getListOfSearchTNArticle("công nghệ", "Technology");
         thanhNienTechnologyList.addAll(ThanhNienArticle.getListOfSearchTNArticle("blockchain", "Technology"));
+        thanhNienTechnologyList.addAll(ThanhNienArticle.getListOfSearchTNArticle("esport", "Technology"));
         HomeSceneController.progressBar.setProgress(HomeSceneController.progressBar.getProgress() + 0.2);
       } catch (IOException e) {
         e.printStackTrace();
@@ -511,7 +517,6 @@ public class ArticleList {
     ExecutorService es = Executors.newCachedThreadPool();
 
     // ZingNews Health
-    // Enter code here
     es.execute(() -> {
       zingHealthList.clear();
       try {
@@ -525,7 +530,6 @@ public class ArticleList {
     });
 
     // VNExpress Health
-    // Enter code here
     es.execute(() -> {
       vnexpressHealthList.clear();
       try {
@@ -542,7 +546,12 @@ public class ArticleList {
     es.execute(() -> {
       tuoiTreHealthList.clear();
       try {
+        // Main category
         tuoiTreHealthList = TuoiTreArticle.getListOfElementsInTT("https://tuoitre.vn/suc-khoe.htm", "Health");
+        // Sub-categories
+        tuoiTreHealthList.addAll(TuoiTreArticle.getListOfElementsInTT("https://tuoitre.vn/suc-khoe/dinh-duong.htm", "Health"));
+        tuoiTreHealthList.addAll(TuoiTreArticle.getListOfElementsInTT("https://tuoitre.vn/suc-khoe/me-va-be.htm", "Health"));
+        tuoiTreHealthList.addAll(TuoiTreArticle.getListOfElementsInTT("https://tuoitre.vn/suc-khoe/gioi-tinh.htm", "Health"));
         HomeSceneController.progressBar.setProgress(HomeSceneController.progressBar.getProgress() + 0.2);
       } catch (IOException e) {
         e.printStackTrace();
@@ -553,7 +562,12 @@ public class ArticleList {
     es.execute(() -> {
       thanhNienHealthList.clear();
       try {
+        // Main category
         thanhNienHealthList = ThanhNienArticle.getListOfElementsInTN("https://thanhnien.vn/suc-khoe/", "Health");
+        // Sub-categories
+        thanhNienHealthList.addAll(ThanhNienArticle.getListOfElementsInTN("https://thanhnien.vn/suc-khoe/lam-dep/", "Health"));
+        thanhNienHealthList.addAll(ThanhNienArticle.getListOfElementsInTN("https://thanhnien.vn/suc-khoe/gioi-tinh/", "Health"));
+        thanhNienHealthList.addAll(ThanhNienArticle.getListOfElementsInTN("https://thanhnien.vn/suc-khoe/khoe-dep-moi-ngay/", "Health"));
         HomeSceneController.progressBar.setProgress(HomeSceneController.progressBar.getProgress() + 0.2);
       } catch (IOException e) {
         e.printStackTrace();
@@ -583,7 +597,6 @@ public class ArticleList {
     ExecutorService es = Executors.newCachedThreadPool();
 
     // ZingNews Sports
-    // Enter code here
     es.execute(() -> {
       zingSportsList.clear();
       try {
@@ -597,7 +610,6 @@ public class ArticleList {
     });
 
     // VNExpress Sports
-    // Enter code here
     es.execute(() -> {
       vnexpressSportsList.clear();
       try {
@@ -614,7 +626,12 @@ public class ArticleList {
     es.execute(() -> {
       tuoiTreSportsList.clear();
       try {
+        // Main category
         tuoiTreSportsList = TuoiTreArticle.getListOfElementsInTT("https://tuoitre.vn/the-thao.htm", "Sport");
+        // Sub-categories
+        tuoiTreSportsList.addAll(TuoiTreArticle.getListOfElementsInTT("https://tuoitre.vn/the-thao/bong-ro.htm", "Sport"));
+        tuoiTreSportsList.addAll(TuoiTreArticle.getListOfElementsInTT("https://tuoitre.vn/the-thao/vo-thuat.htm", "Sport"));
+        tuoiTreSportsList.addAll(TuoiTreArticle.getListOfElementsInTT("https://tuoitre.vn/the-thao/cac-mon-khac.htm", "Sport"));
         HomeSceneController.progressBar.setProgress(HomeSceneController.progressBar.getProgress() + 0.2);
       } catch (IOException e) {
         e.printStackTrace();
@@ -625,7 +642,12 @@ public class ArticleList {
     es.execute(() -> {
       thanhNienSportsList.clear();
       try {
+        // Main category
         thanhNienSportsList = ThanhNienArticle.getListOfElementsInTN("https://thanhnien.vn/the-thao/", "Sport");
+        // Syb-categories
+        thanhNienSportsList.addAll(ThanhNienArticle.getListOfElementsInTN("https://thanhnien.vn/the-thao/bong-da-viet-nam/", "Sport"));
+        thanhNienSportsList.addAll(ThanhNienArticle.getListOfElementsInTN("https://thanhnien.vn/the-thao/bong-da-quoc-te/", "Sport"));
+        thanhNienSportsList.addAll(ThanhNienArticle.getListOfElementsInTN("https://thanhnien.vn/the-thao/bong-ro/", "Sport"));
         HomeSceneController.progressBar.setProgress(HomeSceneController.progressBar.getProgress() + 0.2);
       } catch (IOException e) {
         e.printStackTrace();
@@ -687,7 +709,12 @@ public class ArticleList {
     es.execute(() -> {
       tuoiTreEntertainmentList.clear();
       try {
+        // Main category
         tuoiTreEntertainmentList = TuoiTreArticle.getListOfElementsInTT("https://tuoitre.vn/giai-tri.htm", "Entertainment");
+        // Sub-categories
+        tuoiTreEntertainmentList.addAll(TuoiTreArticle.getListOfElementsInTT("https://tuoitre.vn/giai-tri/nghe-gi-hom-nay.htm", "Entertainment"));
+        tuoiTreEntertainmentList.addAll(TuoiTreArticle.getListOfElementsInTT("https://tuoitre.vn/giai-tri/am-nhac.htm", "Entertainment"));
+        tuoiTreEntertainmentList.addAll(TuoiTreArticle.getListOfElementsInTT("https://tuoitre.vn/giai-tri/dien-anh.htm", "Entertainment"));
         HomeSceneController.progressBar.setProgress(HomeSceneController.progressBar.getProgress() + 0.2);
       } catch (IOException e) {
         e.printStackTrace();
@@ -698,7 +725,12 @@ public class ArticleList {
     es.execute(() -> {
       thanhNienEntertainmentList.clear();
       try {
+        // Main category
         thanhNienEntertainmentList = ThanhNienArticle.getListOfElementsInTN("https://thanhnien.vn/giai-tri/", "Entertainment");
+        // Sub-categories
+        thanhNienEntertainmentList.addAll(ThanhNienArticle.getListOfElementsInTN("https://thanhnien.vn/giai-tri/phim/", "Entertainment"));
+        thanhNienEntertainmentList.addAll(ThanhNienArticle.getListOfElementsInTN("https://thanhnien.vn/giai-tri/truyen-hinh/", "Entertainment"));
+        thanhNienEntertainmentList.addAll(ThanhNienArticle.getListOfElementsInTN("https://thanhnien.vn/giai-tri/doi-nghe-si/", "Entertainment"));
         HomeSceneController.progressBar.setProgress(HomeSceneController.progressBar.getProgress() + 0.2);
       } catch (IOException e) {
         e.printStackTrace();
@@ -729,7 +761,6 @@ public class ArticleList {
     ExecutorService es = Executors.newCachedThreadPool();
 
     // ZingNews World
-    // Enter code here
     es.execute(() -> {
       zingWorldList.clear();
       try {
@@ -743,7 +774,6 @@ public class ArticleList {
     });
 
     // VNExpress World
-    // Enter code here
     es.execute(() -> {
       vnexpressWorldList.clear();
       try {
@@ -760,7 +790,11 @@ public class ArticleList {
     es.execute(() -> {
       tuoiTreWorldList.clear();
       try {
+        // Main category
         tuoiTreWorldList = TuoiTreArticle.getListOfElementsInTT("https://tuoitre.vn/the-gioi.htm", "World");
+        // Sub-categories
+        tuoiTreWorldList.addAll(TuoiTreArticle.getListOfElementsInTT("https://tuoitre.vn/the-gioi/binh-luan.htm", "World"));
+        tuoiTreWorldList.addAll(TuoiTreArticle.getListOfElementsInTT("https://tuoitre.vn/the-gioi/muon-mau.htm", "World"));
         HomeSceneController.progressBar.setProgress(HomeSceneController.progressBar.getProgress() + 0.2);
       } catch (IOException e) {
         e.printStackTrace();
@@ -771,7 +805,12 @@ public class ArticleList {
     es.execute(() -> {
       thanhNienWorldList.clear();
       try {
+        // Main category
         thanhNienWorldList = ThanhNienArticle.getListOfElementsInTN("https://thanhnien.vn/the-gioi/", "World");
+        // Sub-categories
+        thanhNienWorldList.addAll(ThanhNienArticle.getListOfElementsInTN("https://thanhnien.vn/the-gioi/kinh-te-the-gioi/", "World"));
+        thanhNienWorldList.addAll(ThanhNienArticle.getListOfElementsInTN("https://thanhnien.vn/the-gioi/quan-su/", "World"));
+        thanhNienWorldList.addAll(ThanhNienArticle.getListOfElementsInTN("https://thanhnien.vn/the-gioi/goc-nhin/", "World"));
         HomeSceneController.progressBar.setProgress(HomeSceneController.progressBar.getProgress() + 0.2);
       } catch (IOException e) {
         e.printStackTrace();
@@ -800,7 +839,6 @@ public class ArticleList {
     ExecutorService es = Executors.newCachedThreadPool();
 
     // ZingNews Others
-    // Enter code here
     es.execute(() -> {
       zingOthersList.clear();
       try {
@@ -815,7 +853,6 @@ public class ArticleList {
     });
 
     // VNExpress Others
-    // Enter code here
     es.execute(() -> {
       vnexpressOthersList.clear();
       try {
