@@ -10,6 +10,7 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
@@ -56,7 +57,7 @@
                             <children>
                                 <HBox layoutX="267.0" layoutY="-24.0" prefHeight="40.0" prefWidth="200.0" spacing="10.0" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
-                                        <TextField prefHeight="25.0" prefWidth="350.0" promptText="Search" stylesheets="@../css/style.css">
+                                        <TextField fx:id="searchTextField" prefHeight="25.0" prefWidth="350.0" promptText="Search" stylesheets="@../css/style.css">
                                             <HBox.margin>
                                                 <Insets left="200.0" top="8.0" />
                                             </HBox.margin>
@@ -65,7 +66,7 @@
                                                 <String fx:value="round-layout" />
                                             </styleClass>
                                         </TextField>
-                                        <Button mnemonicParsing="false" stylesheets="@../css/style.css">
+                                        <Button fx:id="searchButton" mnemonicParsing="false" stylesheets="@../css/style.css">
                                             <HBox.margin>
                                                 <Insets top="5.0" />
                                             </HBox.margin>
@@ -109,7 +110,7 @@
                                         <HBox layoutX="59.0" layoutY="-24.0" prefHeight="100.0" prefWidth="200.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <children>
                                                 <Separator orientation="VERTICAL" prefHeight="200.0" />
-                                                <Button mnemonicParsing="false" stylesheets="@../css/style.css" text="Newest ">
+                                                <Button fx:id="NewestButton" mnemonicParsing="false" stylesheets="@../css/style.css" text="Newest ">
                                                     <HBox.margin>
                                                         <Insets top="8.0" />
                                                     </HBox.margin>
@@ -121,7 +122,7 @@
                                                         <String fx:value="selected" />
                                                     </styleClass>
                                                 </Button>
-                                                <Button mnemonicParsing="false" stylesheets="@../css/style.css" text="Covid ">
+                                                <Button fx:id="CovidButton" mnemonicParsing="false" stylesheets="@../css/style.css" text="Covid ">
                                                     <HBox.margin>
                                                         <Insets top="8.0" />
                                                     </HBox.margin>
@@ -133,7 +134,7 @@
                                                         <String fx:value="selected" />
                                                     </styleClass>
                                                 </Button>
-                                                <Button mnemonicParsing="false" stylesheets="@../css/style.css" text="Politics ">
+                                                <Button fx:id="PoliticsButton" mnemonicParsing="false" stylesheets="@../css/style.css" text="Politics ">
                                                     <HBox.margin>
                                                         <Insets top="8.0" />
                                                     </HBox.margin>
@@ -145,7 +146,7 @@
                                                         <String fx:value="selected" />
                                                     </styleClass>
                                                 </Button>
-                                                <Button mnemonicParsing="false" stylesheets="@../css/style.css" text="Business ">
+                                                <Button fx:id="BusinessButton" mnemonicParsing="false" stylesheets="@../css/style.css" text="Business ">
                                                     <HBox.margin>
                                                         <Insets top="8.0" />
                                                     </HBox.margin>
@@ -157,7 +158,7 @@
                                                         <String fx:value="selected" />
                                                     </styleClass>
                                                 </Button>
-                                                <Button mnemonicParsing="false" stylesheets="@../css/style.css" text="Technology">
+                                                <Button fx:id="technologyButton" mnemonicParsing="false" stylesheets="@../css/style.css" text="Technology">
                                                     <font>
                                                         <Font name="Calibri" size="12.0" />
                                                     </font>
@@ -169,7 +170,7 @@
                                                         <String fx:value="selected" />
                                                     </styleClass>
                                                 </Button>
-                                                <Button mnemonicParsing="false" stylesheets="@../css/style.css" text="Health">
+                                                <Button fx:id="HealthButton" mnemonicParsing="false" stylesheets="@../css/style.css" text="Health">
                                                     <font>
                                                         <Font name="Calibri" size="12.0" />
                                                     </font>
@@ -181,7 +182,7 @@
                                                         <String fx:value="selected" />
                                                     </styleClass>
                                                 </Button>
-                                                <Button mnemonicParsing="false" stylesheets="@../css/style.css" text="Sport">
+                                                <Button fx:id="SportButton" mnemonicParsing="false" stylesheets="@../css/style.css" text="Sport">
                                                     <font>
                                                         <Font name="Calibri" size="12.0" />
                                                     </font>
@@ -193,7 +194,7 @@
                                                         <String fx:value="selected" />
                                                     </styleClass>
                                                 </Button>
-                                                <Button mnemonicParsing="false" stylesheets="@../css/style.css" text="Entertainment">
+                                                <Button fx:id="EntertainmentButton" mnemonicParsing="false" stylesheets="@../css/style.css" text="Entertainment">
                                                     <font>
                                                         <Font name="Calibri" size="12.0" />
                                                     </font>
@@ -205,7 +206,7 @@
                                                         <String fx:value="selected" />
                                                     </styleClass>
                                                 </Button>
-                                                <Button mnemonicParsing="false" stylesheets="@../css/style.css" text="World">
+                                                <Button fx:id="WorldButton" mnemonicParsing="false" stylesheets="@../css/style.css" text="World">
                                                     <font>
                                                         <Font name="Calibri" size="12.0" />
                                                     </font>
@@ -217,7 +218,7 @@
                                                         <String fx:value="selected" />
                                                     </styleClass>
                                                 </Button>
-                                                <Button mnemonicParsing="false" stylesheets="@../css/style.css" text="Others">
+                                                <Button fx:id="OthersButton" mnemonicParsing="false" stylesheets="@../css/style.css" text="Others">
                                                     <font>
                                                         <Font name="Calibri" size="12.0" />
                                                     </font>
@@ -242,7 +243,14 @@
                         <Pagination layoutX="540.0" layoutY="-75.0" maxPageIndicatorCount="5" pageCount="5" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="540.0" AnchorPane.rightAnchor="540.0" />
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutY="90.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="90.0" />
+                <AnchorPane layoutY="90.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="90.0">
+                    <children>
+                        <ScrollPane fx:id="scrollPane" layoutX="99.0" layoutY="99.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <content>
+                                <BorderPane fx:id="borderPaneUnderScrollPane" prefHeight="473.0" prefWidth="1254.0" />
+                            </content>
+                        </ScrollPane>
+                    </children></AnchorPane>
             </children>
         </AnchorPane>
     </content>

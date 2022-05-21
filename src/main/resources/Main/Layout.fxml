@@ -9,18 +9,18 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane prefHeight="490.0" prefWidth="1260.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProjectController.LayoutController">
+<AnchorPane fx:id="anchorpane0" prefHeight="490.0" prefWidth="1260.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProjectController.LayoutController">
     <children>
-        <VBox layoutX="432.0" layoutY="115.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox fx:id="displayLayoutVbox" layoutX="432.0" layoutY="115.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <HBox prefHeight="245.0" prefWidth="200.0">
+                <HBox prefHeight="245.0" prefWidth="200.">
                     <children>
-                        <AnchorPane prefWidth="504.0">
+                        <AnchorPane fx:id="anchorpane1" prefWidth="504.0">
                             <children>
-                                <Button layoutX="188.0" layoutY="135.0" mnemonicParsing="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                <Button fx:id="button1" layoutX="188.0" layoutY="135.0" mnemonicParsing="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                                 <VBox layoutX="202.0" layoutY="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="160.0">
                                     <children>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="VNExpress - 24 mins ago">
+                                        <Text fx:id="textSource1" strokeType="OUTSIDE" strokeWidth="0.0" text="VNExpress - 24 mins ago">
                                             <VBox.margin>
                                                 <Insets left="10.0" />
                                             </VBox.margin>
@@ -30,7 +30,7 @@
                                                 <Insets left="10.0" />
                                             </VBox.margin>
                                             <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PM leaves Vietnam for ASEAN-US summit">
+                                                <Text fx:id="textTitle1" strokeType="OUTSIDE" strokeWidth="0.0" text="PM leaves Vietnam for ASEAN-US summit">
                                                     <font>
                                                         <Font size="18.0" />
                                                     </font>
@@ -40,12 +40,12 @@
                                     </children></VBox>
                             </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="252.0">
+                        <AnchorPane fx:id="anchorpane2" prefHeight="200.0" prefWidth="252.0">
                             <children>
-                                <Button layoutX="100.0" layoutY="110.0" mnemonicParsing="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                <Button fx:id="button2" layoutX="100.0" layoutY="110.0" mnemonicParsing="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                                 <VBox layoutX="34.0" layoutY="9.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="160.0">
                                     <children>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="VNExpress - 24 mins ago">
+                                        <Text fx:id="textSource2" strokeType="OUTSIDE" strokeWidth="0.0" text="VNExpress - 24 mins ago">
                                             <VBox.margin>
                                                 <Insets left="10.0" />
                                             </VBox.margin>
@@ -55,7 +55,7 @@
                                                 <Insets left="10.0" />
                                             </VBox.margin>
                                             <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PM leaves Vietnam for ASEAN-US summit">
+                                                <Text fx:id="textTitle2" strokeType="OUTSIDE" strokeWidth="0.0" text="PM leaves Vietnam for ASEAN-US summit">
                                                     <font>
                                                         <Font size="18.0" />
                                                     </font>
@@ -65,12 +65,12 @@
                                     </children></VBox>
                             </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="252.0">
+                        <AnchorPane fx:id="anchorpane3" prefHeight="200.0" prefWidth="252.0">
                             <children>
-                                <Button layoutX="153.0" layoutY="85.0" mnemonicParsing="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                <Button fx:id="button3" layoutX="153.0" layoutY="85.0" mnemonicParsing="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                                 <VBox layoutX="114.0" layoutY="37.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="160.0">
                                     <children>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="VNExpress - 24 mins ago">
+                                        <Text fx:id="textSource3" strokeType="OUTSIDE" strokeWidth="0.0" text="VNExpress - 24 mins ago">
                                             <VBox.margin>
                                                 <Insets left="10.0" />
                                             </VBox.margin>
@@ -80,7 +80,7 @@
                                                 <Insets left="10.0" />
                                             </VBox.margin>
                                             <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PM leaves Vietnam for ASEAN-US summit">
+                                                <Text fx:id="textTitle3" strokeType="OUTSIDE" strokeWidth="0.0" text="PM leaves Vietnam for ASEAN-US summit">
                                                     <font>
                                                         <Font size="18.0" />
                                                     </font>
@@ -90,83 +90,78 @@
                                     </children></VBox>
                             </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="252.0">
-                            <HBox.margin>
-                                <Insets />
-                            </HBox.margin>
+                        <VBox prefHeight="245.0" prefWidth="250.0">
                             <children>
-                                <VBox layoutX="51.0" layoutY="-6.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <AnchorPane fx:id="anchorpane4" prefHeight="123.0">
                                     <children>
-                                        <AnchorPane prefHeight="123.0">
+                                        <Button fx:id="button4" layoutX="48.0" layoutY="13.0" mnemonicParsing="false" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                        <VBox layoutX="101.0" layoutY="-62.0" prefHeight="43.0" prefWidth="242.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="80.0">
                                             <children>
-                                                <Button layoutX="48.0" layoutY="13.0" mnemonicParsing="false" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
-                                                <VBox layoutX="101.0" layoutY="-62.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+                                                <Text fx:id="textSource4" strokeType="OUTSIDE" strokeWidth="0.0" text="VNExpress - 24 mins ago">
+                                                    <VBox.margin>
+                                                        <Insets left="10.0" />
+                                                    </VBox.margin>
+                                                    <font>
+                                                        <Font size="10.0" />
+                                                    </font>
+                                                </Text>
+                                                <TextFlow prefHeight="29.0" prefWidth="210.0">
+                                                    <VBox.margin>
+                                                        <Insets left="10.0" />
+                                                    </VBox.margin>
                                                     <children>
-                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="VNExpress - 24 mins ago">
-                                                            <VBox.margin>
-                                                                <Insets left="10.0" />
-                                                            </VBox.margin>
+                                                        <Text fx:id="textTitle4" strokeType="OUTSIDE" strokeWidth="0.0" text="PM leaves Vietnam for ASEAN-US summit" wrappingWidth="156.4444580078125">
                                                             <font>
-                                                                <Font size="10.0" />
+                                                                <Font size="11.0" />
                                                             </font>
                                                         </Text>
-                                                        <TextFlow prefHeight="200.0" prefWidth="200.0">
-                                                            <VBox.margin>
-                                                                <Insets left="10.0" />
-                                                            </VBox.margin>
-                                                            <children>
-                                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PM leaves Vietnam for ASEAN-US summit">
-                                                                    <font>
-                                                                        <Font size="11.0" />
-                                                                    </font>
-                                                                </Text>
-                                                            </children>
-                                                        </TextFlow>
-                                                    </children></VBox>
+                                                    </children>
+                                                </TextFlow>
                                             </children>
-                                        </AnchorPane>
-                                        <AnchorPane prefHeight="123.0" prefWidth="200.0">
-                                            <children>
-                                                <Button layoutX="27.0" layoutY="27.0" mnemonicParsing="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="2.0" />
-                                                <VBox layoutX="76.0" layoutY="-38.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
-                                                    <children>
-                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="VNExpress - 24 mins ago">
-                                                            <VBox.margin>
-                                                                <Insets left="10.0" />
-                                                            </VBox.margin>
-                                                            <font>
-                                                                <Font size="10.0" />
-                                                            </font>
-                                                        </Text>
-                                                        <TextFlow prefHeight="200.0" prefWidth="200.0">
-                                                            <VBox.margin>
-                                                                <Insets left="10.0" />
-                                                            </VBox.margin>
-                                                            <children>
-                                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PM leaves Vietnam for ASEAN-US summit">
-                                                                    <font>
-                                                                        <Font size="11.0" />
-                                                                    </font>
-                                                                </Text>
-                                                            </children>
-                                                        </TextFlow>
-                                                    </children></VBox>
-                                            </children>
-                                        </AnchorPane>
+                                        </VBox>
                                     </children>
-                                </VBox>
+                                </AnchorPane>
+                                <AnchorPane fx:id="anchorpane5" prefHeight="123.0" prefWidth="200.0">
+                                    <children>
+                                        <Button fx:id="button5" layoutX="27.0" layoutY="27.0" mnemonicParsing="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="2.0" />
+                                        <VBox layoutX="76.0" layoutY="-38.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+                                            <children>
+                                                <Text fx:id="textSource5" strokeType="OUTSIDE" strokeWidth="0.0" text="VNExpress - 24 mins ago">
+                                                    <VBox.margin>
+                                                        <Insets left="10.0" />
+                                                    </VBox.margin>
+                                                    <font>
+                                                        <Font size="10.0" />
+                                                    </font>
+                                                </Text>
+                                                <TextFlow prefHeight="200.0" prefWidth="200.0">
+                                                    <VBox.margin>
+                                                        <Insets left="10.0" />
+                                                    </VBox.margin>
+                                                    <children>
+                                                        <Text fx:id="textTitle5" strokeType="OUTSIDE" strokeWidth="0.0" text="PM leaves Vietnam for ASEAN-US summit">
+                                                            <font>
+                                                                <Font size="11.0" />
+                                                            </font>
+                                                        </Text>
+                                                    </children>
+                                                </TextFlow>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </AnchorPane>
                             </children>
-                        </AnchorPane>
+                        </VBox>
                     </children>
                 </HBox>
                 <HBox prefHeight="245.0" prefWidth="200.0">
                     <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="252.0">
+                        <AnchorPane fx:id="anchorpane6" prefHeight="200.0" prefWidth="252.0">
                             <children>
-                                <Button layoutX="100.0" layoutY="159.0" mnemonicParsing="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                <Button fx:id="button6" layoutX="100.0" layoutY="159.0" mnemonicParsing="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                                 <VBox layoutX="96.0" layoutY="-5.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="160.0">
                                     <children>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="VNExpress - 24 mins ago">
+                                        <Text fx:id="textSource6" strokeType="OUTSIDE" strokeWidth="0.0" text="VNExpress - 24 mins ago">
                                             <VBox.margin>
                                                 <Insets left="10.0" />
                                             </VBox.margin>
@@ -176,7 +171,7 @@
                                                 <Insets left="10.0" />
                                             </VBox.margin>
                                             <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PM leaves Vietnam for ASEAN-US summit">
+                                                <Text fx:id="textTitle6" strokeType="OUTSIDE" strokeWidth="0.0" text="PM leaves Vietnam for ASEAN-US summit">
                                                     <font>
                                                         <Font size="18.0" />
                                                     </font>
@@ -186,76 +181,74 @@
                                     </children></VBox>
                             </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="504.0">
+                        <VBox prefHeight="245.0" prefWidth="505.0">
                             <children>
-                                <VBox layoutX="188.0" layoutY="23.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <AnchorPane fx:id="anchorpane7" prefHeight="123.0">
                                     <children>
-                                        <AnchorPane prefHeight="123.0">
+                                        <Button fx:id="button7" layoutX="86.0" layoutY="49.0" mnemonicParsing="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                        <VBox layoutX="269.0" layoutY="-8.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
                                             <children>
-                                                <Button layoutX="86.0" layoutY="49.0" mnemonicParsing="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
-                                                <VBox layoutX="269.0" layoutY="-8.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+                                                <Text fx:id="textSource7" strokeType="OUTSIDE" strokeWidth="0.0" text="VNExpress - 24 mins ago">
+                                                    <VBox.margin>
+                                                        <Insets left="10.0" />
+                                                    </VBox.margin>
+                                                    <font>
+                                                        <Font size="11.0" />
+                                                    </font>
+                                                </Text>
+                                                <TextFlow prefHeight="200.0" prefWidth="200.0">
+                                                    <VBox.margin>
+                                                        <Insets left="10.0" />
+                                                    </VBox.margin>
                                                     <children>
-                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="VNExpress - 24 mins ago">
-                                                            <VBox.margin>
-                                                                <Insets left="10.0" />
-                                                            </VBox.margin>
+                                                        <Text fx:id="textTitle7" strokeType="OUTSIDE" strokeWidth="0.0" text="PM leaves Vietnam for ASEAN-US summit">
                                                             <font>
-                                                                <Font size="11.0" />
+                                                                <Font size="14.0" />
                                                             </font>
                                                         </Text>
-                                                        <TextFlow prefHeight="200.0" prefWidth="200.0">
-                                                            <VBox.margin>
-                                                                <Insets left="10.0" />
-                                                            </VBox.margin>
-                                                            <children>
-                                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PM leaves Vietnam for ASEAN-US summit">
-                                                                    <font>
-                                                                        <Font size="14.0" />
-                                                                    </font>
-                                                                </Text>
-                                                            </children>
-                                                        </TextFlow>
-                                                    </children></VBox>
+                                                    </children>
+                                                </TextFlow>
                                             </children>
-                                        </AnchorPane>
-                                        <AnchorPane prefHeight="123.0">
-                                            <children>
-                                                <Button layoutX="159.0" layoutY="2.0" mnemonicParsing="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
-                                                <VBox layoutX="284.0" layoutY="-86.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
-                                                    <children>
-                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="VNExpress - 24 mins ago">
-                                                            <VBox.margin>
-                                                                <Insets left="10.0" />
-                                                            </VBox.margin>
-                                                            <font>
-                                                                <Font size="11.0" />
-                                                            </font>
-                                                        </Text>
-                                                        <TextFlow prefHeight="200.0" prefWidth="200.0">
-                                                            <VBox.margin>
-                                                                <Insets left="10.0" />
-                                                            </VBox.margin>
-                                                            <children>
-                                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PM leaves Vietnam for ASEAN-US summit">
-                                                                    <font>
-                                                                        <Font size="14.0" />
-                                                                    </font>
-                                                                </Text>
-                                                            </children>
-                                                        </TextFlow>
-                                                    </children></VBox>
-                                            </children>
-                                        </AnchorPane>
+                                        </VBox>
                                     </children>
-                                </VBox>
+                                </AnchorPane>
+                                <AnchorPane fx:id="anchorpane8" prefHeight="123.0">
+                                    <children>
+                                        <Button fx:id="button8" layoutX="159.0" layoutY="2.0" mnemonicParsing="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                        <VBox layoutX="284.0" layoutY="-86.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+                                            <children>
+                                                <Text fx:id="textSource8" strokeType="OUTSIDE" strokeWidth="0.0" text="VNExpress - 24 mins ago">
+                                                    <VBox.margin>
+                                                        <Insets left="10.0" />
+                                                    </VBox.margin>
+                                                    <font>
+                                                        <Font size="11.0" />
+                                                    </font>
+                                                </Text>
+                                                <TextFlow prefHeight="200.0" prefWidth="200.0">
+                                                    <VBox.margin>
+                                                        <Insets left="10.0" />
+                                                    </VBox.margin>
+                                                    <children>
+                                                        <Text fx:id="textTitle8" strokeType="OUTSIDE" strokeWidth="0.0" text="PM leaves Vietnam for ASEAN-US summit">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Text>
+                                                    </children>
+                                                </TextFlow>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </AnchorPane>
                             </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="252.0">
+                        </VBox>
+                        <AnchorPane fx:id="anchorpane9" prefHeight="200.0" prefWidth="252.0">
                             <children>
-                                <Button layoutX="100.0" layoutY="69.0" mnemonicParsing="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                <Button fx:id="button9" layoutX="100.0" layoutY="69.0" mnemonicParsing="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                                 <VBox layoutX="101.0" layoutY="8.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="160.0">
                                     <children>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="VNExpress - 24 mins ago">
+                                        <Text fx:id="textSource9" strokeType="OUTSIDE" strokeWidth="0.0" text="VNExpress - 24 mins ago">
                                             <VBox.margin>
                                                 <Insets left="10.0" />
                                             </VBox.margin>
@@ -265,7 +258,7 @@
                                                 <Insets left="10.0" />
                                             </VBox.margin>
                                             <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PM leaves Vietnam for ASEAN-US summit">
+                                                <Text fx:id="textTitle9" strokeType="OUTSIDE" strokeWidth="0.0" text="PM leaves Vietnam for ASEAN-US summit">
                                                     <font>
                                                         <Font size="18.0" />
                                                     </font>
@@ -275,12 +268,12 @@
                                     </children></VBox>
                             </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="252.0">
+                        <AnchorPane fx:id="anchorpane10" prefHeight="200.0" prefWidth="252.0">
                             <children>
-                                <Button layoutX="73.0" layoutY="85.0" mnemonicParsing="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                <Button fx:id="button10" layoutX="73.0" layoutY="85.0" mnemonicParsing="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                                 <VBox layoutX="96.0" layoutY="-35.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="160.0">
                                     <children>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="VNExpress - 24 mins ago">
+                                        <Text fx:id="textSource10" strokeType="OUTSIDE" strokeWidth="0.0" text="VNExpress - 24 mins ago">
                                             <VBox.margin>
                                                 <Insets left="10.0" />
                                             </VBox.margin>
@@ -290,7 +283,7 @@
                                                 <Insets left="10.0" />
                                             </VBox.margin>
                                             <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PM leaves Vietnam for ASEAN-US summit">
+                                                <Text fx:id="textTitle10" strokeType="OUTSIDE" strokeWidth="0.0" text="PM leaves Vietnam for ASEAN-US summit">
                                                     <font>
                                                         <Font size="18.0" />
                                                     </font>
